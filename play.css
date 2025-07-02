@@ -44,3 +44,7 @@ button:disabled {
     color: black;
     cursor:not-allowed;
 }
+div{
+    text-align: center;
+    
+}
