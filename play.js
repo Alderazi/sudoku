@@ -1,7 +1,7 @@
 // variables
 let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
-const biggerBoxDivs=document.querySelectorAll('.bigBox')
+let numberExist=true
 const soulution=[
      [5,3,6,1,7,2,8,9,4],
      [8,2,7,9,6,4,1,5,3],
@@ -15,7 +15,7 @@ const soulution=[
 
 ]
 const generated=   
-    [['1','',6,'',7,'',8,'',''],
+    [['','',6,'',7,'',8,'',''],
      ['','','','',6,'',1,'',3],
      ['','',1,'',5,'',2,'',''],
      ['','',5,'',4,'','','',8],
@@ -23,11 +23,38 @@ const generated=
      [8,'','','',9,'',7,'',''],
      ['','',1,'',6,'',2,'',''],
      [2,'',5,'',7,'','','',''],
-     ['','',3,'',8,'',4,'','2']]
+     ['','',3,'',8,'',4,'','']]
 
 
 // functions
 
+const thereIsNumber=(event)=>{
+    const Num=event.target.innerText
+    if(Num===''){
+        numberExist=false
+        
+    }
+    else{
+        numberExist=true
+    }
+slecting(event)
+}
+
+
+const slecting=(cell)=>{
+    if(numberExist){
+    cell.target.style.cursor = 'auto';
+
+
+    }
+
+}
+const isSelcted=(event)=>{
+    const cell=event.target.innerText
+    if(!numberExist){
+        console.log(cell)
+    }
+}
 const generate=()=>{
 for (let i = 0; i < generated.length; i++) {
     for (let j = 0; j < generated[i].length; j++) {
@@ -45,7 +72,6 @@ const mistakeHappend=()=>{
     isLose()
 
 }
-const theIsNumber=()=>{}
 const isLose=()=>{
     if (mistakes===3){
 
@@ -56,7 +82,7 @@ setTimeout(function() {
 
 }
    for(let i=0;i<cell.length;i++){
-    
-    cell[i].addEventListener('click',mistakeHappend)
+    cell[i].addEventListener('click',isSelcted)
+    cell[i].addEventListener('mouseover',thereIsNumber)
    }
 generate()
