@@ -1,6 +1,8 @@
 // variables
 let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
+const boxNumber=document.querySelectorAll('.Number')
+let Selected=false
 let numberExist=true
 const soulution=[
      [5,3,6,1,7,2,8,9,4],
@@ -28,6 +30,7 @@ const generated=
 
 // functions
 
+//check weather there is Number or not
 const thereIsNumber=(event)=>{
     const Num=event.target.innerText
     if(Num===''){
@@ -37,11 +40,11 @@ const thereIsNumber=(event)=>{
     else{
         numberExist=true
     }
-slecting(event)
+selecting(event)
 }
 
-
-const slecting=(cell)=>{
+// make sure that when hover over number it will not display cursor on the cell
+const selecting=(cell)=>{
     if(numberExist){
     cell.target.style.cursor = 'auto';
 
@@ -49,15 +52,14 @@ const slecting=(cell)=>{
     }
 
 }
+// when selecting cell that there is no number on it it will display click effect and background color
 const isSelcted=(event)=>{
-    if(!numberExist){
+    if(!numberExist && !Selected){
         event.target.style.boxSizing = "border-box";
         event.target.style.backgroundColor = "orange";
     }
 }
-const addNumber=()=>{
-
-}
+// generate numbers from generated array to the cells
 const generate=()=>{
 for (let i = 0; i < generated.length; i++) {
     for (let j = 0; j < generated[i].length; j++) {
@@ -67,6 +69,7 @@ for (let i = 0; i < generated.length; i++) {
 }
 
 }
+// when player makes mistake it will increase
 const mistakeHappend=()=>{
     mistakes++;
     document.querySelector("h3").innerText=(`mistakes:${mistakes} /3`)
@@ -75,6 +78,7 @@ const mistakeHappend=()=>{
     isLose()
 
 }
+// when the limit of mistakes have been reached max number
 const isLose=()=>{
     if (mistakes===3){
 
@@ -84,8 +88,16 @@ setTimeout(function() {
  }
 
 }
+
+const prinNumber =(event)=>{
+    const number=event.target.innerText
+    return number
+}
    for(let i=0;i<cell.length;i++){
     cell[i].addEventListener('click',isSelcted)
     cell[i].addEventListener('mouseover',thereIsNumber)
+   }
+   for (let j=0;j<boxNumber.length;j++){
+    boxNumber[j].addEventListener('click',prinNumber)
    }
 generate()
