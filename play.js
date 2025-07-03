@@ -50,10 +50,13 @@ const slecting=(cell)=>{
 
 }
 const isSelcted=(event)=>{
-    const cell=event.target.innerText
     if(!numberExist){
-        console.log(cell)
+        event.target.style.boxSizing = "border-box";
+        event.target.style.backgroundColor = "orange";
     }
+}
+const addNumber=()=>{
+
 }
 const generate=()=>{
 for (let i = 0; i < generated.length; i++) {
