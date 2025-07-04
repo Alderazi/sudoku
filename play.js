@@ -2,8 +2,9 @@
 let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
 const boxNumber=document.querySelectorAll('.Number')
-let Selected=false
-let numberExist=true
+let selctedID=null;
+let selectedCell = null
+let flag =false;
 const soulution=[
      [5,3,6,1,7,2,8,9,4],
      [8,2,7,9,6,4,1,5,3],
@@ -33,32 +34,50 @@ const generated=
 //check weather there is Number or not
 const thereIsNumber=(event)=>{
     const Num=event.target.innerText
-    if(Num===''){
-        numberExist=false
-        
-    }
-    else{
-        numberExist=true
-    }
+    selctedID=Num
 selecting(event)
 }
 
 // make sure that when hover over number it will not display cursor on the cell
 const selecting=(cell)=>{
-    if(numberExist){
+    const text =cell.target.innerText
+    if(!(text==='')){
     cell.target.style.cursor = 'auto';
-
-
     }
 
 }
 // when selecting cell that there is no number on it it will display click effect and background color
 const isSelcted=(event)=>{
-    if(!numberExist && !Selected){
-        event.target.style.boxSizing = "border-box";
-        event.target.style.backgroundColor = "orange";
+    const cell=event.target
+    if(flag===true && selectedCell===cell&& cell.innerText===''){
+        unSelectElemnt(cell)
     }
+    else if(flag===true && !(selectedCell===cell )&& cell.innerText===''){
+        selectNewElement(selectedCell,cell)
+
+    }else if(flag===false && cell.innerText=== ''){
+        selctElement(cell)
+    }
+
 }
+const unSelectElemnt=(event)=>{
+    event.classList.remove("selected")
+    flag=false
+    selectedCell=null
+}
+const selctElement=(event)=>{
+    event.classList.add("selected")
+    flag=true
+    selectedCell=event
+}
+const selectNewElement=(oldCell,newCell)=>{
+    selectedCell=newCell
+    oldCell.classList.remove("selected")
+    newCell.classList.add("selected")
+    flag=true
+    
+}
+
 // generate numbers from generated array to the cells
 const generate=()=>{
 for (let i = 0; i < generated.length; i++) {
@@ -89,6 +108,7 @@ setTimeout(function() {
 
 }
 
+//return the number from the box
 const prinNumber =(event)=>{
     const number=event.target.innerText
     return number
