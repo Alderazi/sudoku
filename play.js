@@ -2,7 +2,7 @@
 let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
 const boxNumber=document.querySelectorAll('.Number')
-let selctedID=null;
+let selctedID=null
 let selectedCell = null
 let flag =false;
 const soulution=[
@@ -60,22 +60,24 @@ const isSelcted=(event)=>{
     }
 
 }
+// unselect element if it is alreay been selected before
 const unSelectElemnt=(event)=>{
     event.classList.remove("selected")
     flag=false
     selectedCell=null
 }
+// select element if nothing been selected
 const selctElement=(event)=>{
     event.classList.add("selected")
     flag=true
     selectedCell=event
 }
+// when element already selected but the user select new one it will switch to the new one
 const selectNewElement=(oldCell,newCell)=>{
     selectedCell=newCell
     oldCell.classList.remove("selected")
     newCell.classList.add("selected")
     flag=true
-    
 }
 
 // generate numbers from generated array to the cells
@@ -109,15 +111,18 @@ setTimeout(function() {
 }
 
 //return the number from the box
-const prinNumber =(event)=>{
+const numberSelected =(event)=>{
     const number=event.target.innerText
-    return number
+    printNumber(number)
+}
+const printNumber=(numNum)=>{    
+    selectedCell.innerText=numNum
 }
    for(let i=0;i<cell.length;i++){
     cell[i].addEventListener('click',isSelcted)
     cell[i].addEventListener('mouseover',thereIsNumber)
    }
    for (let j=0;j<boxNumber.length;j++){
-    boxNumber[j].addEventListener('click',prinNumber)
+    boxNumber[j].addEventListener('click',numberSelected)
    }
 generate()
