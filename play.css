@@ -52,7 +52,7 @@ div{
     box-sizing: border-box;
 } */
  .selected{
-    background-color: orangered;
+    background-color: black;
 
     box-sizing: border-box;
  }

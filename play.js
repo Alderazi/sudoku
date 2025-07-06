@@ -4,7 +4,9 @@ const cell=document.querySelectorAll('.smallBox')
 const boxNumber=document.querySelectorAll('.Number')
 let selctedID=null
 let selectedCell = null
-let flag =false;
+let isItemSeected =false;
+let emptyString=0
+let filledCorrect=0
 const soulution=[
      [5,3,6,1,7,2,8,9,4],
      [8,2,7,9,6,4,1,5,3],
@@ -17,16 +19,27 @@ const soulution=[
      [6,7,3,5,8,2,4,1,9]
 
 ]
-const generated=   
-    [['','',6,'',7,'',8,'',''],
-     ['','','','',6,'',1,'',3],
-     ['','',1,'',5,'',2,'',''],
-     ['','',5,'',4,'','','',8],
-     ['',4,'',7,'',2,'',1,''],
-     [8,'','','',9,'',7,'',''],
-     ['','',1,'',6,'',2,'',''],
-     [2,'',5,'',7,'','','',''],
-     ['','',3,'',8,'',4,'','']]
+const generated=[
+     [5,3,6,1,7,2,8,9,4],
+     [8,2,7,9,6,4,1,5,3],
+     [9,4,1,3,5,8,2,6,7],
+     [7,1,5,6,4,3,9,2,8],
+     [3,4,9,7,8,2,5,1,6],
+     [8,2,6,1,9,5,7,3,4],
+     [4,8,1,3,6,9,2,5,7],
+     [2,9,5,4,7,1,6,3,8],
+     [6,7,3,5,8,2,4,1,'']]
+
+
+    // [['','',6,'',7,'',8,'',''],
+    //  ['','','','',6,'',1,'',3],
+    //  ['','',1,'',5,'',2,'',''],
+    //  ['','',5,'',4,'','','',8],
+    //  ['',4,'',7,'',2,'',1,''],
+    //  [8,'','','',9,'',7,'',''],
+    //  ['','',1,'',6,'',2,'',''],
+    //  [2,'',5,'',7,'','','',''],
+    //  ['','',3,'',8,'',4,'','']]
 
 
 // functions
@@ -49,13 +62,13 @@ const selecting=(cell)=>{
 // when selecting cell that there is no number on it it will display click effect and background color
 const isSelcted=(event)=>{
     const cell=event.target
-    if(flag===true && selectedCell===cell&& cell.innerText===''){
+    if(isItemSeected===true && selectedCell===cell&& cell.innerText===''){
         unSelectElemnt(cell)
     }
-    else if(flag===true && !(selectedCell===cell )&& cell.innerText===''){
+    else if(isItemSeected===true && !(selectedCell===cell )&& cell.innerText===''){
         selectNewElement(selectedCell,cell)
 
-    }else if(flag===false && cell.innerText=== ''){
+    }else if(isItemSeected===false && cell.innerText=== ''){
         selctElement(cell)
     }
 
@@ -63,13 +76,13 @@ const isSelcted=(event)=>{
 // unselect element if it is alreay been selected before
 const unSelectElemnt=(event)=>{
     event.classList.remove("selected")
-    flag=false
+    isItemSeected=false
     selectedCell=null
 }
 // select element if nothing been selected
 const selctElement=(event)=>{
     event.classList.add("selected")
-    flag=true
+    isItemSeected=true
     selectedCell=event
 }
 // when element already selected but the user select new one it will switch to the new one
@@ -77,7 +90,7 @@ const selectNewElement=(oldCell,newCell)=>{
     selectedCell=newCell
     oldCell.classList.remove("selected")
     newCell.classList.add("selected")
-    flag=true
+    isItemSeected=true
 }
 
 // generate numbers from generated array to the cells
@@ -86,6 +99,9 @@ for (let i = 0; i < generated.length; i++) {
     for (let j = 0; j < generated[i].length; j++) {
         let index = i * 9 + j;  
         cell[index].innerText = generated[i][j]; 
+        if(cell[index].innerText===''){
+            emptyString++
+        }
     }
 }
 
@@ -113,11 +129,50 @@ setTimeout(function() {
 //return the number from the box
 const numberSelected =(event)=>{
     const number=event.target.innerText
-    printNumber(number)
+    if(selectedCell!==null){
+        printNumber(number)
+        checkSolution(selectedCell)
+    }
+
 }
+
+
+
+//print the number in the box
 const printNumber=(numNum)=>{    
-    selectedCell.innerText=numNum
+        selectedCell.innerText = numNum;
+        
 }
+const checkSolution=(event)=>{
+    
+
+        const selectedCellID=event.getAttribute("id")
+        const insideCell=parseInt(event.innerText)
+        const row =Math.floor(selectedCellID/9)
+        const column=selectedCellID%9
+        const rightAnswer=parseInt(soulution[row][column])
+
+        if(insideCell===rightAnswer){
+            event.style.color="green"
+            unSelectElemnt(event)
+            filledCorrect++
+        }
+        else{
+            event.style.color="red"
+            mistakeHappend()
+        }
+        setTimeout(checkVictory,1)
+
+
+
+        
+}
+const checkVictory=()=>{
+    if(filledCorrect===emptyString){
+        alert("you won")
+    }
+ 
+} 
    for(let i=0;i<cell.length;i++){
     cell[i].addEventListener('click',isSelcted)
     cell[i].addEventListener('mouseover',thereIsNumber)
