@@ -3,11 +3,14 @@ let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
 const boxNumber=document.querySelectorAll('.Number')
 const Reset=document.querySelector('.reset')
+const musicButton=document.querySelector(".musicButton")
 let selctedID=null
 let selectedCell = null
 let isItemSeected =false;
 let emptyString=0
 let filledCorrect=0
+let music=false
+const bgMusic = document.getElementById('bgMusic');
 const soulution=[
      [5,3,6,1,7,2,8,9,4],
      [8,2,7,9,6,4,1,5,3],
@@ -179,6 +182,20 @@ const checkVictory=()=>{
 const resetButton=()=>{
     location.reload();
 }
+const playMusic=()=>{
+
+    music=!music
+    if(music){
+        bgMusic.play()
+musicButton.innerText="music"
+    }
+
+else{
+    musicButton.innerText="no music"
+    bgMusic.pause()
+}
+}
+
    for(let i=0;i<cell.length;i++){
     cell[i].addEventListener('click',isSelcted)
     cell[i].addEventListener('mouseover',thereIsNumber)
@@ -187,5 +204,8 @@ const resetButton=()=>{
     boxNumber[j].addEventListener('click',numberSelected)
    }
    Reset.addEventListener('click',resetButton)
+   musicButton.addEventListener('click',playMusic)
 
 generate()
+
+

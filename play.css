@@ -46,28 +46,23 @@ div{
     margin-top: 35vh;
 
 }
-/* .smallBox:hover{
-    background-color: orangered;
-
-    box-sizing: border-box;
-} */
  .selected{
-    background-color: black;
+    background-color: wheat;
 
     box-sizing: border-box;
  }
-.notes{
-    margin-left: 20px;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border: black 1px solid;
-}
 .reset{
-    margin-top: 42px;
+    margin-left: 42px;
     cursor: pointer;
     width: 40px;
     height: 40px;
     border: black 1px solid;
 
+}
+.musicButton{
+    margin-right: 100px;
+        cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: black 1px solid;
 }
