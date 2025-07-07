@@ -2,6 +2,7 @@
 let mistakes=0
 const cell=document.querySelectorAll('.smallBox') 
 const boxNumber=document.querySelectorAll('.Number')
+const Reset=document.querySelector('.reset')
 let selctedID=null
 let selectedCell = null
 let isItemSeected =false;
@@ -185,4 +186,6 @@ const resetButton=()=>{
    for (let j=0;j<boxNumber.length;j++){
     boxNumber[j].addEventListener('click',numberSelected)
    }
+   Reset.addEventListener('click',resetButton)
+
 generate()

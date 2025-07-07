@@ -59,7 +59,15 @@ div{
 .notes{
     margin-left: 20px;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     border: black 1px solid;
+}
+.reset{
+    margin-top: 42px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: black 1px solid;
+
 }
