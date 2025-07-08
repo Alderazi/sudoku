@@ -124,8 +124,9 @@ const isLose=()=>{
     if (mistakes>=3){
 
 setTimeout(function() {
-  alert("game over you lost");
-}, 1);   
+    
+
+}, 500);   
     location.reload();
 
  }

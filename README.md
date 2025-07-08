@@ -33,7 +33,45 @@ suduko is a logic-based, number-placement puzzle the game played as follow. Ther
 - the user have 3 mistakes if he uses all of them then the game ends
 
 
+## Favourite Function
 
+- My favourite function is isSelected because I have wrap three function in one function and it was kinda hard to figure the condition I was sruggling to find the correct logic
+    
+
+const isSelcted=(event)=>{
+    const cell=event.target
+    if(isItemSeected===true && selectedCell===cell&& cell.innerText===''){
+        unSelectElemnt(cell)
+    }
+    else if(isItemSeected===true && !(selectedCell===cell )&& cell.innerText===''){
+        selectNewElement(selectedCell,cell)
+
+    }else if(isItemSeected===false && cell.innerText=== ''){
+        selctElement(cell)
+    }
+
+}
+// unselect element if it is alreay been selected before
+const unSelectElemnt=(event)=>{
+    event.classList.remove("selected")
+    isItemSeected=false
+    selectedCell=null
+}
+// select element if nothing been selected
+const selctElement=(event)=>{
+    event.classList.add("selected")
+    isItemSeected=true
+    selectedCell=event
+}
+// when element already selected but the user select new one it will switch to the new one
+const selectNewElement=(oldCell,newCell)=>{
+    selectedCell=newCell
+    oldCell.classList.remove("selected")
+    newCell.classList.add("selected")
+    isItemSeected=true
+}
+
+        
 ## Winner
 
 - the winning is determine by filling all cells in every box
