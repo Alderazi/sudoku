@@ -4,9 +4,9 @@ const cell = document.querySelectorAll(".smallBox");
 const boxNumber = document.querySelectorAll(".Number");
 const reset = document.querySelector(".reset");
 const musicButton = document.querySelector(".musicButton");
-let selctedID = null;
+let selectedID = null;
 let selectedCell = null;
-let isItemSeected = false;
+let isItemSelected = false;
 let emptyString = 0;
 let filledCorrect = 0;
 let music = false;
@@ -39,7 +39,7 @@ const generated = [
 //check weather there is Number or not
 const thereIsNumber = (event) => {
   const num = event.target.innerText;
-  selctedID = num;
+  selectedID = num;
   selecting(event);
 };
 
@@ -54,31 +54,31 @@ const selecting = (cell) => {
 const isSelcted = (event) => {
   const cell = event.target;
   if (
-    isItemSeected === true &&
+    isItemSelected === true &&
     selectedCell === cell &&
     cell.innerText === ""
   ) {
     unSelectElemnt(cell);
   } else if (
-    isItemSeected === true &&
+    isItemSelected === true &&
     !(selectedCell === cell) &&
     cell.innerText === ""
   ) {
     selectNewElement(selectedCell, cell);
-  } else if (isItemSeected === false && cell.innerText === "") {
+  } else if (isItemSelected === false && cell.innerText === "") {
     selctElement(cell);
   }
 };
 // unselect element if it is alreay been selected before
 const unSelectElemnt = (event) => {
   event.classList.remove("selected");
-  isItemSeected = false;
+  isItemSelected = false;
   selectedCell = null;
 };
 // select element if nothing been selected
 const selctElement = (event) => {
   event.classList.add("selected");
-  isItemSeected = true;
+  isItemSelected = true;
   selectedCell = event;
 };
 // when element already selected but the user select new one it will switch to the new one
@@ -86,7 +86,7 @@ const selectNewElement = (oldCell, newCell) => {
   selectedCell = newCell;
   oldCell.classList.remove("selected");
   newCell.classList.add("selected");
-  isItemSeected = true;
+  isItemSelected = true;
 };
 
 // generate numbers from generated array to the cells
