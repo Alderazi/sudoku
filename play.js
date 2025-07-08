@@ -166,6 +166,7 @@ const checkSolution=(event)=>{
         else{
             event.style.color="red"
             mistakeHappend()
+            setTimeout(()=>{event.innerText=''} ,500)
         }
         setTimeout(checkVictory,1)
 
