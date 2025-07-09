@@ -1,5 +1,5 @@
 # suduko
-suduko is a logic-based, number-placement puzzle the game played as follow. There is 9 boxes each box is 3*3 grid. The game started by generating number randmoly across the grids, the traget is to fill the boxes with specific numbers. But you cant repeat the same number in row,colmun and box twice
+suduko is a logic-based, number-placement puzzle the game played as follow. There is 9 boxes each box is 3*3 grid. The game started by generating number randmoly across the grids, the traget is to fill the boxes with specific numbers. But you cant repeat the same number in row,colmun and box twice you can check the game in this [link](https://bestsuduko.surge.sh/)
 
 
 
